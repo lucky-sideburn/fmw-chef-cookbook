@@ -33,7 +33,7 @@ platforms:
         memory: 2048
         cpus: 1
       synced_folders:
-        - ["C:/software", "/software"]
+        - ["./software", "/software"]
       network:
         - ["private_network", {ip: "10.10.10.135"}]
   - name: oel-5.8
@@ -130,7 +130,6 @@ suites:
       - recipe[fmw_wls::setup]
       - recipe[fmw_wls::install]
       - recipe[fmw_domain::domain]
-      - recipe[fmw_domain::extension_jrf]
       - recipe[fmw_domain::nodemanager]
       - recipe[fmw_domain::adminserver]
     attributes:
@@ -385,6 +384,8 @@ suites:
       - recipe[fmw_domain::domain]
       - recipe[fmw_domain::nodemanager]
       - recipe[fmw_domain::adminserver]
+      - recipe[fmw_inst::jrf]
+      - recipe[fmw_domain::extension_jrf]
     attributes:
       fmw:
         java_home_dir:       "/usr/java/jdk1.7.0_79"
@@ -399,6 +400,9 @@ suites:
         databag_key:                "DEV_WLS1"
         domains_dir:                "/opt/oracle/middleware_1036/user_projects/domains"
         nodemanager_listen_address: "10.10.10.135"
+        restricted: true
+      fmw_inst:
+        jrf_source_file: "/software/ofm_appdev_generic_11.1.1.9.0_disk1_1of1.zip"
     excludes:
       - windows-2012r2
       - windows-8.1

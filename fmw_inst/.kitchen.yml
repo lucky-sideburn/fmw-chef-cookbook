@@ -37,7 +37,7 @@ platforms:
         memory: 2048
         cpus: 1
       synced_folders:
-        - ["C:/software", "/software"]
+        - ["./software", "/software"]
   - name: oel-5.8
     driver_config:
       box: OEL-5.8
@@ -220,7 +220,6 @@ suites:
 
   - name: wls1036
     run_list:
-      - recipe[artifact-deployer]
       - recipe[fmw_jdk::install]
       - recipe[fmw_jdk::rng_service]
       - recipe[fmw_wls::setup]

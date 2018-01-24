@@ -83,7 +83,7 @@ action :install do
       end
 
       execute 'chown java_home_dir' do
-        command "chown -R root:bin #{new_resource.java_home_dir}"
+        command "chown -R #{node['fmw_jdk']['solaris']['user']}:#{node['fmw_jdk']['solaris']['group']}  #{new_resource.java_home_dir}"
       end
 
       new_resource.updated_by_last_action(true)

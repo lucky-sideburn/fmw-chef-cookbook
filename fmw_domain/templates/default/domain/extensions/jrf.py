@@ -22,7 +22,7 @@ RESTRICTED          = '<%= @restricted %>'
 # repository
 REPOS_DBURL         = '<%= @repository_database_url %>'
 REPOS_DBUSER_PREFIX = '<%= @repository_prefix %>'
-REPOS_DBPASSWORD    = sys.argv[2]
+REPOS_DBPASSWORD    = ''
 
 readDomain(DOMAIN_PATH)
 

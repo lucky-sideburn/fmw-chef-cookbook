@@ -98,13 +98,11 @@ end
 
 if platform_family?('rhel')
   yum_package ["libaio-devel", "ksh", "compat-libcap1", "glibstdc++", "glibc", "libgcc", "compat-libstdc++-33"] do
-    arch 'x86_64'
     ignore_failure true
     action :install
   end
   if node['platform_version'].to_f < 7.0
     yum_package ["libstdc++","glibc", "libgcc", "compat-libstdc++-33"] do
-      arch 'i686'
       ignore_failure true
       action :install
     end

@@ -46,6 +46,8 @@ elsif node['os'].include?('solaris2')
   end
 end
 
+package 'tar'
+
 fmw_jdk_jdk node['fmw']['java_home_dir'] do
   action          :install
   java_home_dir   node['fmw']['java_home_dir']
