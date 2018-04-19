@@ -28,7 +28,7 @@ if ['12.2.1', '12.2.1.1', '12.2.1.2', '12.1.3'].include?(node['fmw']['version'])
 
 elsif ['10.3.6'].include?(node['fmw']['version'])
   fmw_template = 'fmw_11g.rsp'
-  fmw_oracle_home = node['fmw']['middleware_home_dir'] + '/Oracle_OSB1'
+  fmw_oracle_home = ::File.join(node['fmw']['middleware_home_dir'],node['fmw']['osb_dir_suffix'])
   install_type = ''
   option_array = ['TYPICAL TYPE=false',
                   'CUSTOM TYPE=true',
