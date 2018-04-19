@@ -9,7 +9,7 @@ if platform_family?('windows')
   default['fmw']['tmp_dir']               = 'C:/temp'
 else
   default['fmw']['middleware_home_dir']   = '/opt/oracle/middleware'
-  default['fmw']['osb_dir_suffix']        = '/Oracle_OSB1'
+  default['fmw']['relative_osb_home']        = '/Oracle_OSB1'
   default['fmw']['os_user']               = 'oracle'
   default['fmw']['os_group']              = 'oinstall'
   default['fmw']['os_shell']              = '/bin/bash'
