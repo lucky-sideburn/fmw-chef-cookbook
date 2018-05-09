@@ -13,9 +13,15 @@ define :fmw_install, :unix => true, :installer_file => nil, :rsp_file => nil, :j
       java_params = ''
     end
 
+    if node['fmw']['ignore_sys_prerequisites']
+      sys_prereq = ''
+    else  
+      sys_prereq = '-ignoreSysPrereqs'
+    end
+
     if ['10.3.6', '12.1.1'].include?(params[:version])
       execute "Install #{params[:name]}" do
-        command "#{params[:installer_file]} -silent -response #{params[:rsp_file]} -waitforcompletion -invPtrLoc #{params[:orainst_dir]}/oraInst.loc -ignoreSysPrereqs -jreLoc #{params[:java_home_dir]} -Djava.io.tmpdir=#{params[:tmp_dir]}"
+        command "#{params[:installer_file]} -silent -response #{params[:rsp_file]} -waitforcompletion -invPtrLoc #{params[:orainst_dir]}/oraInst.loc #{sys_prereq} -jreLoc #{params[:java_home_dir]} -Djava.io.tmpdir=#{params[:tmp_dir]}"
         user  params[:os_user]
         group params[:os_group]
         cwd   params[:tmp_dir]
@@ -31,7 +37,7 @@ define :fmw_install, :unix => true, :installer_file => nil, :rsp_file => nil, :j
   else
     if ['10.3.6', '12.1.1'].include?(params[:version])
       execute "Install #{params[:name]}" do
-        command "#{params[:installer_file]} -silent -response #{params[:rsp_file]} -waitforcompletion -jreLoc #{params[:java_home_dir]} -ignoreSysPrereqs -Djava.io.tmpdir=#{params[:tmp_dir]}"
+        command "#{params[:installer_file]} -silent -response #{params[:rsp_file]} -waitforcompletion -jreLoc #{params[:java_home_dir]} #{sys_prereq} -Djava.io.tmpdir=#{params[:tmp_dir]}"
         cwd     params[:tmp_dir]
       end
     elsif ['12.2.1', '12.2.1.1', '12.2.1.2', '12.1.3', '12.1.2'].include?(params[:version])

@@ -28,3 +28,4 @@ elsif platform_family?('solaris2')
 end
 
 default['fmw']['check_install_dir'] = nil
+default['fmw']['ignore_sys_prerequisites'] = false
