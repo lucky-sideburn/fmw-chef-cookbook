@@ -36,6 +36,8 @@ attribute :tmp_dir, kind_of: String, required: true
 # infra|wls WebLogic or WebLogic Infra installation
 attribute :install_type, kind_of: String, required: true
 
+attribute :check_install_dir, kind_of: String, required: false
+
 state_attrs :java_home_dir, :middleware_home_dir, :version, :os_user, :os_group, :ora_inventory_dir, :orainst_dir, :tmp_dir
 
 attr_accessor :exists

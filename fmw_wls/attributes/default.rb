@@ -26,3 +26,5 @@ elsif platform_family?('solaris2')
   default['fmw']['ora_inventory_dir'] = '/export/home/oracle/oraInventory'
   default['fmw']['tmp_dir']           = '/var/tmp'
 end
+
+default['fmw']['check_install_dir'] = nil

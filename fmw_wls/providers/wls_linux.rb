@@ -24,6 +24,7 @@ def load_current_resource
   @current_resource.orainst_dir(@new_resource.orainst_dir)
   @current_resource.tmp_dir(@new_resource.tmp_dir)
   @current_resource.install_type(@new_resource.install_type)
+  @current_resource.check_install_dir(@new_resource.check_install_dir)
 
   Chef::Log.info("#{@new_resource} checking if source_file exists")
   unless ::File.exist?(@new_resource.source_file)
@@ -37,7 +38,14 @@ end
 # Installs WebLogic on a Linux host
 action :install do
   Chef::Log.info("#{@new_resource} fired the create action")
-  if @current_resource.exists
+
+  if @current_resource.check_install_dir.nil?
+    install_dir = @current_resource.exists
+  else
+    install_dir = ::File.exists?(@current_resource.check_install_dir)
+  end
+
+  if install_dir
     Chef::Log.info("#{@new_resource} already exists")
   else
     Chef::Log.info("#{@new_resource} doesn't exist, so lets install weblogic")

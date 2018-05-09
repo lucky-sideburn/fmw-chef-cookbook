@@ -26,6 +26,7 @@ fmw_wls_wls node['fmw']['middleware_home_dir'] do
   os_user             node['fmw']['os_user']              if unix
   os_group            node['fmw']['os_group']             if unix
   tmp_dir             node['fmw']['tmp_dir']
+  check_install_dir   node['fmw']['check_install_dir']    if unix
 end
 
 # log  "####{cookbook_name}::#{recipe_name} #{Time.now.inspect}: Finished execution phase"
