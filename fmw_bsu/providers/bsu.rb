@@ -20,6 +20,10 @@ def load_current_resource
   @current_resource.patch_id(@new_resource.patch_id)
   @current_resource.middleware_home_dir(@new_resource.middleware_home_dir)
   @current_resource.os_user(@new_resource.os_user)
+   
+  shell_out!("su - #{@new_resource.os_user} -c \"sed -i 's/MEM_ARGS=.*/MEM_ARGS=\\\"#{node['fmw']['bsu']['MEM_ARGS']}\\\"/g' #{@new_resource.middleware_home_dir}/utils/bsu/bsu.sh\"").stdout.each_line do |line|
+    Chef::Log.debug(line)
+  end
 
   @current_resource.exists = false
   shell_out!("su - #{@new_resource.os_user} -c 'cd #{@new_resource.middleware_home_dir}/utils/bsu;#{@new_resource.middleware_home_dir}/utils/bsu/bsu.sh -view -status=applied -prod_dir=#{@new_resource.middleware_home_dir}/wlserver_10.3 -verbose'").stdout.each_line do |line|

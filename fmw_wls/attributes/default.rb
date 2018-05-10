@@ -29,3 +29,4 @@ end
 
 default['fmw']['check_install_dir'] = nil
 default['fmw']['ignore_sys_prerequisites'] = false
+default['fmw']['bsu']['MEM_ARGS'] = '-Xms512m -Xmx752m -XX:-UseGCOverheadLimit'
