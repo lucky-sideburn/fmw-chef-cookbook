@@ -19,7 +19,7 @@ elsif ['10.3.6'].include?(node['fmw']['version'])
   if node['os'].include?('windows')
     fmw_oracle_home = node['fmw']['middleware_home_dir'] + '\\Oracle_OSB1'
   else
-    fmw_oracle_home = node['fmw']['middleware_home_dir'] + '/Oracle_OSB1'
+    fmw_oracle_home = node['fmw']['middleware_home_dir'] + node['fmw']['relative_osb_home']
   end
 end
 
